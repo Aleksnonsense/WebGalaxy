@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8" />
+        <title>WebGalaxy</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <meta name="description" content="Web Development" />
+        <meta name="keywords" content="website, web, development, webdevelopment, design, webdesign" />
+        <link rel="shortcut icon" href="img/17px.png"> 
+        <link rel="stylesheet" type="text/css" href="css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script type="text/javascript" src="js/modernizr.custom.79639.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.ba-cond.min.js"></script>
+		<script type="text/javascript" src="js/jquery.slitslider.js"></script>
+		<script type="text/javascript">	
+			$(function() {
+			
+				var Page = (function() {
+
+					var $navArrows = $( '#nav-arrows' ),
+						$nav = $( '#nav-dots > span' ),
+						slitslider = $( '#slider' ).slitslider( {
+							onBeforeChange : function( slide, pos ) {
+
+								$nav.removeClass( 'nav-dot-current' );
+								$nav.eq( pos ).addClass( 'nav-dot-current' );
+
+							}
+						} ),
+
+						init = function() {
+
+							initEvents();
+							
+						},
+						initEvents = function() {
+
+							// add navigation events
+							$navArrows.children( ':last' ).on( 'click', function() {
+
+								slitslider.next();
+								return false;
+
+							} );
+
+							$navArrows.children( ':first' ).on( 'click', function() {
+								
+								slitslider.previous();
+								return false;
+
+							} );
+
+							$nav.each( function( i ) {
+							
+								$( this ).on( 'click', function( event ) {
+									
+									var $dot = $( this );
+									
+									if( !slitslider.isActive() ) {
+
+										$nav.removeClass( 'nav-dot-current' );
+										$dot.addClass( 'nav-dot-current' );
+									
+									}
+									
+									slitslider.jump( i + 1 );
+									return false;
+								
+								} );
+								
+							} );
+
+						};
+
+						return { init : init };
+
+				})();
+
+				Page.init();
+
+				/**
+				 * Notes: 
+				 * 
+				 * example how to add items:
+				 */
+
+				/*
+				
+				var $items  = $('<div class="sl-slide sl-slide-color-2" data-orientation="horizontal" data-slice1-rotation="-5" data-slice2-rotation="10" data-slice1-scale="2" data-slice2-scale="1"><div class="sl-slide-inner bg-1"><div class="sl-deco" data-icon="t"></div><h2>some text</h2><blockquote><p>bla bla</p><cite>Margi Clarke</cite></blockquote></div></div>');
+				
+				// call the plugin's add method
+				ss.add($items);
+
+				*/
+			
+			});
+		</script>
+<!-- horizontal slider -->
+<!-- <script type="text/javascript" src="js/jquery-1.5.min.js"></script> -->
+<script type="text/javascript" src="js/jquery.jcarousel.js"></script>
+
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    // Initialise the first and second carousel by class selector.
+	// Note that they use both the same configuration options (none in this case).
+	jQuery('.d-carousel .carousel').jcarousel({
+        scroll: 1
+    });
+});
+</script>
+<!-- faNCYBOX -->
+<link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox.css">
+<!-- <script type="text/javascript" src="fancybox/jquery-1.3.2.min.js"></script> -->
+<script type="text/javascript" src="fancybox/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="fancybox/jquery.fancybox-1.2.1.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function() { 
+$("a.first").fancybox(); 
+$("a.two").fancybox(); 
+$("a.video").fancybox({"frameWidth":560,"frameHeight":340}); 
+$("a.content").fancybox({"frameWidth":600,"frameHeight":300}); 
+});
+</script>
+<!-- // -->
+
+<!-- scroll to block -->
+<!-- <script src="http://code.jquery.com/jquery-1.11.1.js"></script> -->
+<script type="text/javascript">
+var zTop = 1;
+$('a').on('click',function(e){
+ e.preventDefault();
+ // Animate up or down based on DOM index
+ var index = $($(this).attr('href')).index();
+ var wh = $(window).height();
+ $('section').each(function(){
+ var $tgt = $(this);
+ var idx = $tgt.index();
+ $tgt.removeClass();
+ if(index == idx){ $tgt.stop(true,true).animate({top:0},'linear').addClass('active').css({'z-index':zTop}); }
+ if(index < idx) { $tgt.stop(true,true).animate({top:wh},'linear').addClass('below'); }
+ if(index > idx ){ $tgt.stop(true,true).animate({top:-wh},'linear').addClass('above'); }
+ });
+ zTop++;
+})
+ 
+// Trigger first section animation
+$('a[href="#a"]').trigger('click');
+ 
+// Set height
+$(window).on('resize',function(){
+ var wh = $(window).height();
+ $('article, section').height(wh);
+ $('.active').css({top:0});
+ $('.above').css({top:-wh});
+ $('.below').css({top:wh});
+}).trigger('resize');
+</script>
+<!-- // -->
+
+<!-- to top -->
+ <script> 
+        $(function() {   
+        $(window).scroll(function() {    
+        if($(this).scrollTop() != 0) {   
+        $('#toTop').fadeIn();    
+        } else {     
+        $('#toTop').fadeOut();   
+        }    
+        });  
+        $('#toTop').click(function() {   
+        $('body,html').animate({scrollTop:0},900);   
+        });  
+        }); 
+    </script>
+    <!-- // -->
+
+
+		
+    </head>
+    <body>        
+ <div class="container demo-1">
+	<div class="logo">
+		<img src="img/logo2.png">
+		</a>
+	</div>
+		<div class="language">
+			<div class="d"><a href="engversion.html"><p>ENG</p></a></div>
+			<div class="d"><a href="#"><p>RU</p></a></div>
+		</div>
+
+            <nav class="codrops-demos">
+				<div class="d"><a href="#about_us">.О нас</a></div>
+				<div class="d"><a href="#what_we_do">.Услуги</a></div>
+				<div class="d"><a href="#portfolio">.Портфолио</a></div>
+				<div class="d"><a href="#contacts">.Контакты</a></div>
+			</nav>
+            <div id="slider" class="sl-slider-wrapper">
+				<div class="sl-slider">				
+					<div class="sl-slide bg-1" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2" style="background-image: url(img/demo-1-bg.jpg);">
+						<div class="sl-slide-inner">
+							<h2 style="font-weight:900">Web <span style="font-weight:300"> Galaxy</span></h2>
+							<blockquote><p>В будущем на рынке останется два вида компаний: те кто в Интернете и те, кто вышел из бизнеса.</p><cite>Билл Гейтс</cite></blockquote>
+							<p class="btn"><a href="#what_we_do">Что мы делаем?</a></p>
+						</div>
+					</div>
+					
+					<div class="sl-slide bg-2" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5" style="background-image: url(img/demo-2-bg.jpg);">
+						<div class="sl-slide-inner">
+							<h2 style="font-weight:900">Web <span style="font-weight:300"> Gala<span style="color: #8d5ee1">x</span><span style="color: #b49ddd">y</span></span></h2>
+							<blockquote><p>Web Galaxy - ваше верное решение</p><cite>#TeamGalaxy</cite></blockquote>
+							<p class="btn"><a href="#what_we_do">Что мы делаем?</a></p>
+						</div>
+					</div>
+					<!-- <div class="sl-slide bg-3" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2" style="background-image: url(img/demo-3-bg.jpg);">
+						<div class="sl-slide-inner">
+							<h2 style="font-weight:900">Web <span style="font-weight:300">Galaxy</h2>
+							<blockquote><p>Мы - Залог вашего успеха</span></p><cite>#TeamGalaxy</span></cite></blockquote>
+							<p class="btn"><a href="#">What we do?</a></p>
+						</div>
+					</div>
+					<div class="sl-slide bg-4" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5" style="background-image: url(img/demo-4-bg.jpg);">
+						<div class="sl-slide-inner">
+							<h2 style="font-weight:900">Web <span style="font-weight:300">Galaxy</h2>
+							<blockquote><p>Мы - Залог вашего успеха</span></p><cite>#TeamGalaxy</span></cite></blockquote>
+							<p class="btn"><a href="#">What we do?</a></p>
+						</div>
+					</div> -->
+					
+				</div>
+				<!-- /sl-slider -->				
+				<nav id="nav-arrows" class="nav-arrows">
+					<span class="nav-arrow-prev">Previous</span>
+					<span class="nav-arrow-next">Next</span>
+				</nav>
+
+				<nav id="nav-dots" class="nav-dots">
+					<span class="nav-dot-current"></span>
+					<span></span>
+					<!-- <span></span>
+					<span></span> -->
+				</nav>
+
+			</div><!-- /slider-wrapper -->
+        </div>
+<div class="wrapper">
+	<div class="about_us" id="about_us">		
+			<div class="h2"><h2>О нас</h2></div>
+			<div class="h1"><h1>Web Galaxy</h1></div>
+			<div class="text">
+			<p>
+			<p>В современном мире Интернет занял твердую позицию в нашей обыденной жизни, люди всего мира ежедневно прибегают к интернету, покупая товар, читая новости, общаясь между собой и т.д.</p><br>
+			<p>В мире среди всех экономических отраслей интернет-торговля развивается наиболее быстрыми темпами.
+			Учитывая данные бесспорные факты, можно сделать вывод - можно повысить спрос на ваши услуги или товар с помощью интернета. Ведь если нет предложения от вас, не будет и спроса на ваши услуги или товар.</p><br><p>Наша команда предлагает полный спектр веб-услуг, а именно:</p>	
+			<ul>
+			<li><p> - разработка сайта любой сложности,</p></li>
+			<li><p> - авторский веб-дизайн с учетом ваших пожеланий,</p></li>
+			<li><p> - разработка фирменного стиля и брендбука для вашей компании,</p></li>
+			<li><p> - СЕО-оптимизация сайтов, продвижение сайта,</p></li>
+			<li><p> - продвижение по социальным сетям,</p></li>
+			<li><p> - копирайтинг.</p></li>	
+			</ul>
+			</div>		
+	</div>
+	<div class="portfolio" id="portfolio">
+		<div class="h2"><h2>Портфолио</h2></div>
+		<div class="text">
+			<p>Креативность и оригинальность - одно из наших преимуществ.</p>		
+		</div>	
+		<div class="our_works">
+			<ol>
+				<li>
+					<figure class="effect-sarah">
+						<img src="img/coffee-p.jpg" width="350px" height="300px"/>
+							<figcaption>
+								<h2>Co<span>ffee</span></h2>
+								<p>Современный привлекательный дизайн для кофейного сайта.</p>
+
+								<p><a class="two" rel="group" title="" href="img/coffee.jpg"><img src="img/magnifier1.png" style="width:32px; height:32px">Смотреть</a></p>
+
+							</figcaption>			
+					</figure>
+				</li>
+				<li>
+					<figure class="effect-sarah">
+						<img src="img/furniture-p.jpg" width="350px" height="300px">
+							<figcaption>
+								<h2>Fu<span>rniture</span></h2>
+								<p>Креативный дизайн для мебельного магазина или мебельного производства.</p>
+								<p><a class="two" rel="group" title="" href="img/furniture.jpg"><img src="img/magnifier1.png" style="width:32px; height:32px">Смотреть</a></p>
+							</figcaption>			
+					</figure>
+				</li>
+
+				<li>
+					<figure class="effect-sarah">
+						<img src="img/photo-p.jpg" width="350px" height="300px">
+							<figcaption>
+								<h2>Ph<span>otographer</span></h2>
+								<p>Ни один пользователь не пройдет мимо такого восхитительного дизайна.</p>
+								<p><a class="two" rel="group" title="" href="img/photo.png"><img src="img/magnifier1.png" style="width:32px; height:32px">Смотреть</a></p>
+							</figcaption>			
+					</figure>
+				</li>
+				<li>
+					<figure class="effect-sarah">
+						<img src="img/dragon-p.jpg" width="350px" height="300px">
+							<figcaption>
+								<h2>Dr<span>agon</span></h2>
+								<p>Дизайн для игрового сайта.</p>
+								<p><a class="two" rel="group" title="" href="img/dragon.jpg"><img src="img/magnifier1.png" style="width:32px; height:32px">Смотреть</a></p>
+							</figcaption>			
+					</figure>
+				</li>
+				<li>
+					<figure class="effect-sarah">
+						<img src="img/texas-p.jpg" width="350px" height="300px">
+							<figcaption>
+								<h2>Te<span>xas</span></h2>
+								<p>Антуражный сайт развлекательного центра "Техас" для детей и взрослых, дизайн выполнен в классическом ковбойском стиле.</p>
+								<p><a class="two" rel="group" title="" href="img/texas.jpg"><img src="img/magnifier1.png" style="width:32px; height:32px">Смотреть</a></p>
+							</figcaption>			
+					</figure>
+				</li>
+				<li>
+					<figure class="effect-sarah">
+						<img src="img/rehouse.jpg" width="350px" height="300px">
+							<figcaption>
+								<h2>Re<span>house</span></h2>
+								<p>Строгий и в то же время оригинальный дизайн сайта Агентства недвижимости "Rehouse Odessa".</p>
+								<p><a class="two" rel="group" title="" href="img/rehouse.jpg"><img src="img/magnifier1.png" style="width:32px; height:32px">Смотреть</a></p>
+							</figcaption>			
+					</figure>
+				</li>
+			</ol>
+			<p class="btn" style="margin-top: 20px;"><a href="#">Смотреть больше</a></p>
+		</div>
+
+	</div>
+<div class="what_we_do" id="what_we_do">
+
+	<div class="h2"><h2>Что мы делаем?</h2></div>
+		<div class="services">
+			<div class="item1">
+				<h4>Ux/UI Дизайн</h4>
+				<p>Дизайн любой сложностии и любой тематики.</p>
+			</div>
+			<div class="item2">
+				<h4>WEB Разработка</h4>
+				<p>Разработка сайта любой сложности с учетом пожеланий заказчика.</p>
+			</div>
+			<div class="item3">
+				<h4>SEO оптимизация</h4>
+				<p>Закажите продвижение сайта в Google.</p>
+			</div>
+			<div class="item6">
+				<h4>Маркетинг в социальных сетях</h4>
+				<p>Увеличение продаж через социальные сети.</p>
+			</div>	
+			<div class="item4">
+				<h4>Разработка фирменного стиля</h4>
+				<p>Графическое отображение концепции вашей компании</p>
+			</div>
+			<div class="item5">
+				<h4>Системное администрирование</h4>
+				<p>Техническая поддержка предприятий.</p>
+			</div>		
+		</div>
+</div>
+
+
+
+
+<div class="our_team">
+<div class="h2"><h2>Наша команда</h2></div>
+		<div class="text">
+			<!-- <p>Мы команда профессионалов, нацеленных на результат. Lorem ipsum dolosed quia non numquam eius modinumquam eius modinumquam eius modi tempora incidunt.</p> -->		
+		</div>	
+<div class="d-carousel">
+      <ul class="carousel">
+        <li> <a href="#"><img src="img/eblo.png" alt="" width="207px" height="207px" /></a>
+          <h4><a href="#">Константин Кравцов  Web дизайн</a></h4>
+          <p>Suspendisse potenti. Nibh miry</p>
+        </li>
+        <li> <a href="#"><img src="img/eblo.png" alt="" width="207px" height="207px" /></a>
+          <h4><a href="#">Сергей Кожокарь Web Разработка</a></h4>
+          <p>Suspendisse potenti. Nibh miry</p>
+        </li>
+        <li> <a href="#"><img src="img/eblo.png" alt="" width="207px" height="207px" /></a>
+          <h4><a href="#">Алексей Кравцов Менеджмент</a></h4>
+          <p>Suspendisse potenti. Nibh miry</p>
+        </li>
+        <li> <a href="#"><img src="img/eblo.png" alt="" width="207px" height="207px" /></a>
+          <h4><a href="#">Алексей Кравцов Менеджмент</a></h4>
+          <p>Suspendisse potenti. Nibh miry, ultricies ac molestie sit ametesse potenti. Nibh miry, ultricies ac molestie sit ametesse potenti. Nibh miry, ultricies ac molestie sit amete</p>
+        </li>
+        
+      </ul>
+    </div>
+</div>
+
+<div class="cooperation">
+<div class="h2"><h2>Простые шаги на пути к сотрудничеству</h2></div>
+
+
+<div class="lets_go">
+	<div class="man">
+	</div>
+	<div class="step1">
+	<p>Подача заявки и заполнение брифа</p>
+	</div>
+	<div class="step2">
+	<p>Внесение предоплаты</p>
+	</div>
+	<div class="step3">
+	<p>Утверждение дизайна</p>
+	</div>
+	<div class="step4">
+	<p>Запуск сайта</p>
+	</div>
+	<div class="step5">
+	<p>Сдача проекта</p>
+	</div>
+</div>
+
+
+<div class="xz">
+		<a href="#openModal" class="modal_window">Заполнить brief...</a>
+</div>
+<div id="openModal" class="modalDialog">
+	<div>
+		<a href="#close" title="Закрыть" class="close">X</a>
+		<form id="application" action="#" method="POST"  name=" application ">
+
+
+ <div class="formflex_check">        
+<p>К какому типу вы бы отнесли разрабатываемый сайт?</p>
+   <p><input type="checkbox" name="option1" value="a1" class="checkbox">промо-сайт<Br>
+   <input type="checkbox" name="option2" value="a2" class="checkbox">корпоративный сайт<Br>
+   <input type="checkbox" name="option3" value="a3" class="checkbox">онлайн-магазин<Br> 
+   <input type="checkbox" name="option4" value="a4" class="checkbox">сайт-визитка<Br> 
+   <input type="checkbox" name="option5" value="a5" class="checkbox">блог</p>
+</div>
+
+<div class="formflex">
+<h4>Как называется ваша компания? Род деятельности компании? </h4>
+     <p><textarea name="text" id="applicationText" placeholder="Сообщение" required/></textarea></p>
+</div>
+
+<div class="formflex">
+<h4>Приведите примеры сайтов, которые вам нравятся</h4>
+	<p><textarea name="text" id="applicationText" placeholder="Сообщение" required/></textarea></p>
+</div>
+
+<div class="formflex">
+<h4>Какие языки будут использоваться на вашем сайте?</h4>
+	<p><textarea name="text" id="applicationText" placeholder="Сообщение" required/></textarea></p>
+</div>
+
+<div class="formflex">
+<h4>Сроки реализации и бюджет проекта</h4>
+	<p><textarea name="text" id="applicationText" placeholder="Сообщение" required/></textarea></p>
+</div>
+
+
+	<div class="formflex_contact">
+	<h4>Ваши контактные данные:</h4>
+				<input name="name" id="applicationName" maxlength="25" placeholder="Имя" required />
+                <input name="email" type="email" id="applicationEmail" maxlength="35" placeholder="Email" />
+                <input name="telephone" type="Tel" id="applicationTelephone" maxlength="20" placeholder="Телефон" required/>
+	</div>
+
+	<p class="error">*Вы не заполнили поле "Сроки реализации проекта"</p>
+                <button class="applicationButton" type="submit" form="application">Отправить</button>
+            </form>
+
+            <div class="message">
+            	<p class="error">Мы ответим Вам в ближайшее время!</p>
+            </div>
+	</div>
+</div>
+
+</div>
+
+
+<div class="our_team">
+	<div class="h2"><h2>Отзывы наших клиентов</h2></div>	
+<div class="d-carousel" id="second">
+      <ul class="carousel">
+        <li class="clients"><img src="img/b2.png" alt="" />
+          <h4><a href="#">Дядя Петя</a></h4>
+          <h3><a href="#">Директор ООО "По еблу на"</a></h3>
+          <div class="streak"></div>
+          <p>m dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+        </li>
+        <li class="clients"><img src="img/b3.png" alt="" />
+          <h4><a href="#">Дядя Петя</a></h4>
+          <h3><a href="#">Директор ООО "По еблу на"</a></h3>
+          <div class="streak"></div>
+          <p>m dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+        </li>
+        <li class="clients"><img src="img/b2.png" alt="" />
+          <h4><a href="#">Дядя Петя</a></h4>
+          <h3><a href="#">Директор ООО "По еблу на"</a></h3>
+          <div class="streak"></div>
+          <p>m dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+        </li>
+        <li class="clients"><img src="img/b3.png" alt="" />
+          <h4><a href="#">Дядя Петя</a></h4>
+          <h3><a href="#">Директор ООО "По еблу на"</a></h3>
+          <div class="streak"></div>
+          <p>m dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+        </li>
+      </ul>
+      <p class="btn" style="margin-top: 20px;padding-bottom:0px;"><a href="#">Оставить отзыв</a></p>
+    </div>
+
+
+			<form id="application" action="#" method="POST"  name=" application ">
+                <input name="name" id="applicationName" maxlength="25" placeholder="Имя" required />
+                <input name="rank" type="email" id="applicationEmail" maxlength="35" placeholder="Компания и должность" />
+                <p><textarea name="text" id="applicationText" placeholder="Отзыв" required/></textarea></p>
+
+                <p class="error">*Вы не заполнили поле "Отзыв"</p>
+
+
+                <button class="applicationButton" type="submit" form="application">Отправить</button>
+            </form>
+            <div class="message">
+            	<p class="error" style="color:white">Спасибо за отзыв.</p>
+            </div>
+</div>
+
+<div class="contacts" id="contacts">
+	<div class="h2"><h2>Контакты</h2></div>
+
+<div class="information">
+		<div class="info">
+				<div class="tel"><img src="img/tel.png"><p>+38093 695 76 37</p></div>
+				<div class="gmail"><img src="img/mail.png"><p>aleksey.twebgalaxy@gmail.com</p></div>
+			<div class="social">
+				<div class="be"><a href="" target="_blank"></a></div>
+				<div class="fb"><a href="https://www.facebook.com/pg/IGalaxyTeamI/posts/?ref=page_internal" target="_blank"></a></div>
+				<div class="ld"><a href="" target="_blank"></a></div>
+			</div>
+		</div>
+
+<div class="feedback">
+			<form id="application" action="#" method="POST"  name=" application ">
+                <input name="name" id="applicationName" maxlength="25" placeholder="Имя" required />
+                <input name="email" type="email" id="applicationEmail" maxlength="35" placeholder="Email" />
+                <input name="telephone" type="Tel" id="applicationTelephone" maxlength="20" placeholder="Телефон" required/>
+
+               <!--  <input type=»tel» pattern="+3\([0-9]{3}\)[0-9]{3}-[0-9]{2}-[0-9]{2}" name=»phone» placeholder=»(050)121-34-57″ title=»Формат ввода (050) 121-34-57″ required/> -->
+                <p><textarea name="text" id="applicationText" placeholder="Сообщение" required/></textarea></p>
+
+                <p class="error">*Вы не заполнили поле "Имя"</p>
+
+
+                <button class="applicationButton" type="submit" form="application">Отправить</button>
+            </form>
+            <div class="message">
+            	<p class="error">Мы ответим Вам в ближайшее время!</p>
+            </div>
+ 		</div>
+	</div>
+</div>
+
+<div class="footer">
+	<div class="logo2">
+		<img src="img/logo.png">
+		</a>
+	</div>
+	<p>© 2017 Web-студия "galaxy"</p>
+	<div id="toTop">▲</div>
+</div>	
+
+</div>
+	</body>
+</html>
